@@ -14,22 +14,24 @@ angular.module('fxInstagram', []).service('Instagram', [
   'Instagram', function(Instagram) {
     return {
       restict: 'AECM',
-      controller: function($scope, $attrs, Instagram) {
-        var config;
-        config = {
-          params: {
-            client_id: $attrs.clientId,
-            count: $attrs.count,
-            max_timestamp: $attrs.maxTimestamp,
-            min_timestamp: $attrs.minTimestamp,
-            callback: $attrs.callback || 'JSON_CALLBACK'
-          }
-        };
-        $scope.instaImgs = [];
-        return Instagram.get($attrs.userId, config, function(images) {
-          return $scope.instaImgs = images;
-        });
-      }
+      controller: [
+        '$scope', '$attrs', 'Instagram', function($scope, $attrs, Instagram) {
+          var config;
+          config = {
+            params: {
+              client_id: $attrs.clientId,
+              count: $attrs.count,
+              max_timestamp: $attrs.maxTimestamp,
+              min_timestamp: $attrs.minTimestamp,
+              callback: $attrs.callback || 'JSON_CALLBACK'
+            }
+          };
+          $scope.instaImgs = [];
+          return Instagram.get($attrs.userId, config, function(images) {
+            return $scope.instaImgs = images;
+          });
+        }
+      ]
     };
   }
 ]);
