@@ -41,6 +41,11 @@ Only a `client-id` is required for the request's params, the others are optional
 </div>
 ```
 
+## Getting Instagram Deets
+
+[User ID](http://jelled.com/instagram/lookup-user-id#)
+[Client ID](https://instagram.com/developer/)
+
 ## License
 
 MIT: http://fixate.mit-license.org/
