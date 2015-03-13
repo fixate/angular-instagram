@@ -1,0 +1,23 @@
+{
+  "name": "angular-instagram",
+  "version": "0.0.1",
+  "description": "easily get instagram images with angular",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fixate/angular-instagram.git"
+  },
+  "keywords": [
+    "angular",
+    "instagram"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fixate/angular-instagram/issues"
+  },
+  "homepage": "https://github.com/fixate/angular-instagram"
+}

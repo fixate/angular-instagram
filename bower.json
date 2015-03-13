@@ -1,0 +1,22 @@
+{
+  "name": "angular-instagram",
+  "version": "0.0.0",
+  "homepage": "https://github.com/fixate/angular-instagram",
+  "authors": [
+    "Larry Botha <larry@fixate.it>"
+  ],
+  "description": "easily get instagram images",
+  "main": "angular-instagram.js",
+  "keywords": [
+    "angular",
+    "instagram"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
