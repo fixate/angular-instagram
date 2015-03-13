@@ -1,5 +1,6 @@
 coffee			= require "gulp-coffee"
 gulp				= require "gulp"
+bump				= require "gulp-bump"
 gutil				= require "gulp-util"
 rename			= require "gulp-rename"
 plumber			= require "gulp-plumber"
