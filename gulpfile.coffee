@@ -1,6 +1,5 @@
-gulp				= require "gulp"
-sass				= require "gulp-sass"
 coffee			= require "gulp-coffee"
+gulp				= require "gulp"
 gutil				= require "gulp-util"
 plumber			= require "gulp-plumber"
 watch				= require "gulp-watch"
@@ -8,18 +7,25 @@ browserSync = require "browser-sync"
 reload			= browserSync.reload
 spawn				= require('child_process').spawn
 
+
+
+
+
+#*------------------------------------*\
+##   $BROWSER SYNC
+#*------------------------------------*/
 gulp.task 'auto-reload', () ->
-  process = undefined
+	process = undefined
 
-  restart = () ->
-    if process
-      process.kill()
-    process = spawn('gulp', [ 'default' ], stdio: 'inherit')
-    return
+	restart = () ->
+		if process
+			process.kill()
+		process = spawn('gulp', [ 'default' ], stdio: 'inherit')
+		return
 
-  gulp.watch ['gulpfile.coffee', 'config.js'], restart
-  restart()
-  return
+	gulp.watch ['gulpfile.coffee', 'config.js'], restart
+	restart()
+	return
 
 gulp.task "browser-sync", () ->
 	browserSync {
@@ -30,20 +36,73 @@ gulp.task "browser-sync", () ->
 			baseDir: './'
 	}
 
+
+
+
+
+#*------------------------------------*\
+##   $BUMP
+#*------------------------------------*/
+gulp.task 'bump:major', (ver) ->
+	gulp.src 'package.json'
+		.pipe bump({type: 'major'})
+		.pipe gulp.dest './'
+		.pipe git.commit('bump version')
+
+gulp.task 'bump:minor', (ver) ->
+	gulp.src 'package.json'
+		.pipe bump({type: 'minor'})
+		.pipe gulp.dest './'
+		.pipe git.commit('bump version')
+
+gulp.task 'bump', (ver) ->
+	gulp.src 'package.json'
+		.pipe bump({type: 'patch'})
+		.pipe gulp.dest './'
+		.pipe git.commit('bump version')
+
+
+
+
+
+#*------------------------------------*\
+##   $HTML
+#*------------------------------------*/
 gulp.task "html", () ->
 	gulp.src(["*.html"])
 		.pipe reload({stream: true})
 
+
+
+
+
+#*------------------------------------*\
+##   $COFFEE
+#*------------------------------------*/
 gulp.task "coffee", () ->
 	gulp.src(["src/*.coffee"])
 		.pipe(plumber())
 		.pipe(coffee({bare: true}))
-		.pipe(gulp.dest("js/"))
+		.pipe(gulp.dest("dist"))
 
+
+
+
+
+#*------------------------------------*\
+#   $WATCH
+#*------------------------------------*/
 gulp.task "watch", () ->
 	gulp.watch "**/*.coffee", ["coffee", reload]
 	gulp.watch "**/*.html", ["html"]
 
+
+
+
+
+#*------------------------------------*\
+##   $DEFAULT
+#*------------------------------------*/
 gulp.task "default", [
 	"coffee"
 ], () ->
