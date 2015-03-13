@@ -14,7 +14,7 @@ spawn				= require('child_process').spawn
 
 
 #*------------------------------------*\
-##   $BROWSER SYNC
+##	 $BROWSER SYNC
 #*------------------------------------*/
 gulp.task 'auto-reload', () ->
 	process = undefined
@@ -43,7 +43,7 @@ gulp.task "browser-sync", () ->
 
 
 #*------------------------------------*\
-##   $BUMP
+##	 $BUMP
 #*------------------------------------*/
 gulp.task 'bump:major', (ver) ->
 	gulp.src 'package.json'
@@ -68,7 +68,7 @@ gulp.task 'bump', (ver) ->
 
 
 #*------------------------------------*\
-##   $HTML
+##	 $HTML
 #*------------------------------------*/
 gulp.task "html", () ->
 	gulp.src ["*.html"]
@@ -79,7 +79,7 @@ gulp.task "html", () ->
 
 
 #*------------------------------------*\
-##   $COFFEE
+##	 $COFFEE
 #*------------------------------------*/
 gulp.task "coffee", () ->
 	gulp.src ["src/*.coffee"]
@@ -92,7 +92,7 @@ gulp.task "coffee", () ->
 
 
 #*------------------------------------*\
-##   $UGLIFY
+##	 $UGLIFY
 #*------------------------------------*/
 gulp.task "uglify", () ->
 	gulp.src ["dist/*.js", "!dist/*.min.js"]
@@ -105,7 +105,7 @@ gulp.task "uglify", () ->
 
 
 #*------------------------------------*\
-#   $WATCH
+#		$WATCH
 #*------------------------------------*/
 gulp.task "watch", () ->
 	gulp.watch "src/*.coffee", ["coffee", "uglify", reload]
@@ -116,7 +116,7 @@ gulp.task "watch", () ->
 
 
 #*------------------------------------*\
-##   $DEFAULT
+##	 $DEFAULT
 #*------------------------------------*/
 gulp.task "default", [
 	"coffee"
