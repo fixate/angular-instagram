@@ -1,4 +1,4 @@
-angular.module 'fxInstagram', []
+angular.module('fxInstagram', [])
 
 	.service 'Instagram', [
 		'$http', ($http) ->
@@ -13,7 +13,7 @@ angular.module 'fxInstagram', []
 	.directive 'fxInstagram', [
 		'Instagram', (Instagram) ->
 			restict: 'AECM'
-			controller: ($scope, $attrs, Instagram) ->
+			controller: ['$scope', '$attrs', 'Instagram', ($scope, $attrs, Instagram) ->
 				config =
 					params:
 						client_id: $attrs.clientId,
@@ -26,4 +26,5 @@ angular.module 'fxInstagram', []
 
 				Instagram.get $attrs.userId, config, (images) ->
 					$scope.instaImgs = images
+			]
 	]
