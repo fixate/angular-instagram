@@ -1,7 +1,9 @@
 coffee			= require "gulp-coffee"
 gulp				= require "gulp"
 gutil				= require "gulp-util"
+rename			= require "gulp-rename"
 plumber			= require "gulp-plumber"
+uglify			= require "gulp-uglify"
 watch				= require "gulp-watch"
 browserSync = require "browser-sync"
 reload			= browserSync.reload
@@ -69,7 +71,7 @@ gulp.task 'bump', (ver) ->
 ##   $HTML
 #*------------------------------------*/
 gulp.task "html", () ->
-	gulp.src(["*.html"])
+	gulp.src ["*.html"]
 		.pipe reload({stream: true})
 
 
@@ -80,10 +82,23 @@ gulp.task "html", () ->
 ##   $COFFEE
 #*------------------------------------*/
 gulp.task "coffee", () ->
-	gulp.src(["src/*.coffee"])
-		.pipe(plumber())
-		.pipe(coffee({bare: true}))
-		.pipe(gulp.dest("dist"))
+	gulp.src ["src/*.coffee"]
+		.pipe plumber()
+		.pipe coffee({bare: true})
+		.pipe gulp.dest("dist")
+
+
+
+
+
+#*------------------------------------*\
+##   $UGLIFY
+#*------------------------------------*/
+gulp.task "uglify", () ->
+	gulp.src ["dist/*.js", "!dist/*.min.js"]
+		.pipe uglify()
+		.pipe rename({ suffix: '.min' })
+		.pipe gulp.dest("dist/")
 
 
 
@@ -93,8 +108,8 @@ gulp.task "coffee", () ->
 #   $WATCH
 #*------------------------------------*/
 gulp.task "watch", () ->
-	gulp.watch "**/*.coffee", ["coffee", reload]
-	gulp.watch "**/*.html", ["html"]
+	gulp.watch "src/*.coffee", ["coffee", "uglify", reload]
+	gulp.watch "demo/*.html", ["html"]
 
 
 
