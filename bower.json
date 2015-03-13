@@ -6,7 +6,7 @@
     "Larry Botha <larry@fixate.it>"
   ],
   "description": "easily get instagram images",
-  "main": "angular-instagram.js",
+  "main": "dist/angular-instagram.js",
   "keywords": [
     "angular",
     "instagram"
